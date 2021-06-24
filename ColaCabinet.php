@@ -19,6 +19,10 @@ class ColaCabinet extends Cabinet
      */
     public function add(int $shelf, int $drink): array
     {
+        if (!isset($this->shelves[$shelf])){
+            throw new Exception("The shelf is not found!");
+        }
+
         if ($this->status === Cabinet::FULL) {
             throw new Exception("No vacancy in the cabinet!");
         }
@@ -51,6 +55,10 @@ class ColaCabinet extends Cabinet
      */
     public function extract(int $shelf, int $index): int
     {
+        if (!isset($this->shelves[$shelf])){
+            throw new Exception("The shelf is not found!");
+        }
+
         if ($this->isOpen === false) {
             $this->isOpen = true;
         }
